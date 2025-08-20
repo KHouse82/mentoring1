@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비즈니스 멘토링 - 성공한 자영업자와 함께하세요</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: slideUp 1s ease-out 0.3s forwards;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: slideUp 1s ease-out 0.6s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            opacity: 0;
+            animation: slideUp 1s ease-out 0.9s forwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .features {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #2d3748;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: 0.5s;
+        }
+
+        .feature-card:hover::before {
+            left: 0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .mentors {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .mentors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 4rem;
+        }
+
+        .mentor-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mentor-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transition: 0.5s;
+            transform: scale(0);
+        }
+
+        .mentor-card:hover::after {
+            transform: scale(1);
+        }
+
+        .mentor-card:hover {
+            transform: scale(1.05);
+        }
+
+        .mentor-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .mentor-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .mentor-field {
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .mentor-revenue {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .mentoring-form {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 20px rgba(255,255,255,0.3);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #666;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .submit-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        .submit-button.loading .loading-spinner {
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .message {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        .success-message {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            color: white;
+        }
+
+        .error-message {
+            background: linear-gradient(45deg, #f56565, #e53e3e);
+            color: white;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .features-grid,
+            .mentors-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-container {
+                margin: 0 20px;
+                padding: 30px 20px;
+            }
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float-up 15s linear infinite;
+        }
+
+        .floating-element:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { left: 20%; animation-delay: -2s; }
+        .floating-element:nth-child(3) { left: 30%; animation-delay: -4s; }
+        .floating-element:nth-child(4) { left: 40%; animation-delay: -6s; }
+        .floating-element:nth-child(5) { left: 50%; animation-delay: -8s; }
+        .floating-element:nth-child(6) { left: 60%; animation-delay: -10s; }
+        .floating-element:nth-child(7) { left: 70%; animation-delay: -12s; }
+        .floating-element:nth-child(8) { left: 80%; animation-delay: -14s; }
+
+        @keyframes float-up {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>성공한 자영업자와<br>함께 성장하세요</h1>
+                <p class="subtitle">검증된 멘토들의 실무 경험과 노하우를<br>직접 배울 수 있는 프리미엄 멘토링 서비스</p>
+                <a href="#mentoring" class="cta-button">멘토링 신청하기</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">왜 우리 멘토링인가?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>실무 중심 멘토링</h3>
+                    <p>이론이 아닌 실제 사업 운영에서 얻은 경험과 노하우를 전수받을 수 있습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>검증된 성과</h3>
+                    <p>연매출 5억원 이상의 성공한 자영업자 멘토들과 함께 확실한 성장을 경험하세요.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>1:1 맞춤 지도</h3>
+                    <p>개인별 사업 특성과 목표에 맞는 맞춤형 멘토링으로 더 빠른 성과를 달성하세요.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mentors">
+        <div class="container">
+            <h2 class="section-title">우리의 프리미엄 멘토</h2>
+            <div class="mentors-grid">
+                <div class="mentor-card">
+                    <div class="mentor-avatar">🍕</div>
+                    <div class="mentor-name">김성공 대표</div>
+                    <div class="mentor-field">프랜차이즈 음식점</div>
+                    <div class="mentor-revenue">연매출 12억원</div>
+                </div>
+                <div class="mentor-card">
+                    <div class="mentor-avatar">✂️</div>
+                    <div class="mentor-name">박번영 원장</div>
+                    <div class="mentor-field">헤어샵 & 뷰티</div>
+                    <div class="mentor-revenue">연매출 8억원</div>
+                </div>
+                <div class="mentor-card">
+                    <div class="mentor-avatar">🏋️</div>
+                    <div class="mentor-name">이건강 대표</div>
+                    <div class="mentor-field">피트니스센터</div>
+                    <div class="mentor-revenue">연매출 15억원</div>
+                </div>
+                <div class="mentor-card">
+                    <div class="mentor-avatar">☕</div>
+                    <div class="mentor-name">최카페 사장</div>
+                    <div class="mentor-field">카페 & 베이커리</div>
+                    <div class="mentor-revenue">연매출 6억원</div>
+                </div>
+                <div class="mentor-card">
+                    <div class="mentor-avatar">🛒</div>
+                    <div class="mentor-name">정온라인 대표</div>
+                    <div class="mentor-field">온라인 쇼핑몰</div>
+                    <div class="mentor-revenue">연매출 20억원</div>
+                </div>
+                <div class="mentor-card">
+                    <div class="mentor-avatar">🏠</div>
+                    <div class="mentor-name">한부동산 대표</div>
+                    <div class="mentor-field">부동산 중개업</div>
+                    <div class="mentor-revenue">연매출 9억원</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mentoring-form" id="mentoring">
+        <div class="container">
+            <h2 class="section-title">멘토링 신청하기</h2>
+            <div class="form-container">
+                <div class="message success-message" id="successMessage">
+                    ✅ 멘토링 신청이 성공적으로 접수되었습니다!<br>빠른 시일 내에 연락드리겠습니다.
+                </div>
+                <div class="message error-message" id="errorMessage">
+                    ❌ 신청 중 오류가 발생했습니다.<br>잠시 후 다시 시도해주세요.
+                </div>
+                
+                <div id="mentoringForm">
+                    <div class="form-group">
+                        <label for="from_name">이름 *</label>
+                        <input type="text" id="from_name" name="from_name" placeholder="성명을 입력해주세요" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">연락처 *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="휴대폰 번호를 입력해주세요 (예: 010-1234-5678)" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reply_to">이메일 *</label>
+                        <input type="email" id="reply_to" name="reply_to" placeholder="이메일 주소를 입력해주세요" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="business_field">관심 분야 *</label>
+                        <select id="business_field" name="business_field" required>
+                            <option value="">관심 있는 사업 분야를 선택해주세요</option>
+                            <option value="음식점/프랜차이즈">음식점/프랜차이즈</option>
+                            <option value="뷰티/미용업">뷰티/미용업</option>
+                            <option value="피트니스/헬스">피트니스/헬스</option>
+                            <option value="카페/베이커리">카페/베이커리</option>
+                            <option value="온라인 쇼핑몰">온라인 쇼핑몰</option>
+                            <option value="부동산">부동산</option>
+                            <option value="기타">기타</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="current_status">현재 상황 *</label>
+                        <select id="current_status" name="current_status" required>
+                            <option value="">현재 상황을 선택해주세요</option>
+                            <option value="창업 준비 중">창업 준비 중</option>
+                            <option value="창업 1년 미만">창업 1년 미만</option>
+                            <option value="사업 확장 고민 중">사업 확장 고민 중</option>
+                            <option value="매출 증대 필요">매출 증대 필요</option>
+                            <option value="직장인 (창업 관심)">직장인 (창업 관심)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">상담 받고 싶은 내용</label>
+                        <textarea id="message" name="message" rows="4" placeholder="멘토링을 통해 해결하고 싶은 고민이나 질문을 자유롭게 작성해주세요"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button" id="submitBtn">
+                        <div class="loading-spinner"></div>
+                        <span id="btnText">멘토링 신청하기</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 비즈니스 멘토링. 성공한 자영업자와 함께 성장하세요.</p>
+        </div>
+    </footer>
+
+    <!-- EmailJS 라이브러리 -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <script type="text/javascript">
+        // EmailJS 초기화 및 디버깅
+        (function(){
+            console.log('EmailJS 초기화 시작...');
+            emailjs.init("KPcLztD_ZCmf0CJuf");
+            console.log('EmailJS 초기화 완료');
+        })();
+
+        // 멘토링 폼을 동적으로 생성
+        function createForm() {
+            const formHTML = `
+                <div class="form-group">
+                    <label for="from_name">이름 *</label>
+                    <input type="text" id="from_name" name="from_name" placeholder="성명을 입력해주세요" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">연락처 *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="휴대폰 번호를 입력해주세요 (예: 010-1234-5678)" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reply_to">이메일 *</label>
+                    <input type="email" id="reply_to" name="reply_to" placeholder="이메일 주소를 입력해주세요" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="business_field">관심 분야 *</label>
+                    <select id="business_field" name="business_field" required>
+                        <option value="">관심 있는 사업 분야를 선택해주세요</option>
+                        <option value="음식점/프랜차이즈">음식점/프랜차이즈</option>
+                        <option value="뷰티/미용업">뷰티/미용업</option>
+                        <option value="피트니스/헬스">피트니스/헬스</option>
+                        <option value="카페/베이커리">카페/베이커리</option>
+                        <option value="온라인 쇼핑몰">온라인 쇼핑몰</option>
+                        <option value="부동산">부동산</option>
+                        <option value="기타">기타</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="current_status">현재 상황 *</label>
+                    <select id="current_status" name="current_status" required>
+                        <option value="">현재 상황을 선택해주세요</option>
+                        <option value="창업 준비 중">창업 준비 중</option>
+                        <option value="창업 1년 미만">창업 1년 미만</option>
+                        <option value="사업 확장 고민 중">사업 확장 고민 중</option>
+                        <option value="매출 증대 필요">매출 증대 필요</option>
+                        <option value="직장인 (창업 관심)">직장인 (창업 관심)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">상담 받고 싶은 내용</label>
+                    <textarea id="message" name="message" rows="4" placeholder="멘토링을 통해 해결하고 싶은 고민이나 질문을 자유롭게 작성해주세요"></textarea>
+                </div>
+                
+                <button type="button" class="submit-button" id="submitBtn" onclick="submitForm()">
+                    <div class="loading-spinner"></div>
+                    <span id="btnText">멘토링 신청하기</span>
+                </button>
+            `;
+            
+            document.getElementById('mentoringForm').innerHTML = formHTML;
+            
+            // 전화번호 자동 포맷팅 이벤트 추가
+            document.getElementById('phone').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/[^0-9]/g, '');
+                if (value.length >= 3 && value.length <= 7) {
+                    value = value.slice(0, 3) + '-' + value.slice(3);
+                } else if (value.length > 7) {
+                    value = value.slice(0, 3) + '-' + value.slice(3, 7) + '-' + value.slice(7, 11);
+                }
+                e.target.value = value;
+            });
+        }
+
+        // 폼 제출 처리 함수
+        function submitForm() {
+            console.log('폼 제출 시작...');
+            
+            // UI 요소들
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const successMsg = document.getElementById('successMessage');
+            const errorMsg = document.getElementById('errorMessage');
+            
+            // 기존 메시지 숨기기
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+            
+            // 로딩 상태 시작
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            btnText.textContent = '전송 중...';
+            
+            // 폼 데이터 수집
+            const templateParams = {
+                from_name: document.getElementById('from_name').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                reply_to: document.getElementById('reply_to').value.trim(),
+                business_field: document.getElementById('business_field').value,
+                current_status: document.getElementById('current_status').value,
+                message: document.getElementById('message').value.trim() || '(상담 내용 없음)'
+            };
+            
+            console.log('전송할 데이터:', templateParams);
+            
+            // 폼 데이터 검증
+            const requiredFields = ['from_name', 'phone', 'reply_to', 'business_field', 'current_status'];
+            
+            for (let field of requiredFields) {
+                if (!templateParams[field] || templateParams[field] === '') {
+                    console.log('필수 필드 누락:', field);
+                    showError('모든 필수 항목을 입력해주세요.');
+                    resetButton();
+                    return;
+                }
+            }
+            
+            // 이메일 형식 검증
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(templateParams.reply_to)) {
+                console.log('이메일 형식 오류:', templateParams.reply_to);
+                showError('올바른 이메일 주소를 입력해주세요.');
+                resetButton();
+                return;
+            }
+            
+            console.log('EmailJS 전송 시작...');
+            console.log('Service ID: service_1s4g8h7');
+            console.log('Template ID: template_956077d');
+            
+            // EmailJS로 전송
+            emailjs.send('service_1s4g8h7', 'template_956077d', templateParams)
+                .then(function(response) {
+                    console.log('전송 성공!', response.status, response.text);
+                    showSuccess();
+                    clearForm();
+                })
+                .catch(function(error) {
+                    console.error('전송 실패:', error);
+                    console.error('에러 상세:', JSON.stringify(error));
+                    
+                    let errorMessage = '전송에 실패했습니다.';
+                    if (error.status === 400) {
+                        errorMessage = 'EmailJS 설정을 확인해주세요.';
+                    } else if (error.status === 403) {
+                        errorMessage = 'EmailJS 인증에 문제가 있습니다.';
+                    } else if (error.status === 404) {
+                        errorMessage = '템플릿 또는 서비스를 찾을 수 없습니다.';
+                    }
+                    
+                    showError(errorMessage + ' (오류 코드: ' + (error.status || 'Unknown') + ')');
+                })
+                .finally(function() {
+                    resetButton();
+                });
+            
+            function showSuccess() {
+                successMsg.style.display = 'block';
+                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            function showError(message) {
+                errorMsg.innerHTML = '❌ ' + message;
+                errorMsg.style.display = 'block';
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            function resetButton() {
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                btnText.textContent = '멘토링 신청하기';
+            }
+            
+            function clearForm() {
+                document.getElementById('from_name').value = '';
+                document.getElementById('phone').value = '';
+                document.getElementById('reply_to').value = '';
+                document.getElementById('business_field').value = '';
+                document.getElementById('current_status').value = '';
+                document.getElementById('message').value = '';
+            }
+        }
+
+        // 페이지 로드 시 폼 생성
+        document.addEventListener('DOMContentLoaded', function() {
+            createForm();
+        });
+
+        // 스크롤 애니메이션
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // 애니메이션 요소들 관찰
+        document.querySelectorAll('.feature-card, .mentor-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // 부드러운 스크롤
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#mentoring').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // 전화번호 자동 포맷팅
+        // (이미 createForm 함수 내부로 이동됨)
+    </script>
+</body>
+</html>
