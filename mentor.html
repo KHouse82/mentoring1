@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>리얼멘토 — 현직자 무료 멘토링 신청</title>
+  <meta name="description" content="현직 멘토에게 무료로 상담을 신청하세요. 이름과 이메일만 작성하면 접수 완료!">
+  <link rel="canonical" href="https://khouse82.github.io/KHouse82/">
+
+  <!-- Open Graph (공유 미리보기) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="리얼멘토 — 현직자 무료 멘토링 신청">
+  <meta property="og:description" content="현직 멘토에게 무료로 상담을 신청하세요. 이름과 이메일만 작성하면 접수 완료!">
+  <meta property="og:url" content="https://khouse82.github.io/KHouse82/">
+  <!-- 필요 시 대표 이미지 경로 교체 -->
+  <meta property="og:image" content="https://khouse82.github.io/KHouse82/assets/img/og-cover.jpg">
+
+  <style>
+    :root{
+      --bg:#0f172a;      /* 배경(남색) */
+      --text:#e5e7eb;    /* 본문 텍스트 */
+      --muted:#94a3b8;   /* 보조 텍스트 */
+      --brand:#22c55e;   /* CTA 초록 */
+      --card:#111827;    /* 카드 배경 */
+      --border:#1f2937;  /* 테두리 */
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0; font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,system-ui,Apple SD Gothic Neo,Malgun Gothic,Helvetica,Arial,sans-serif;
+      color:var(--text); background:
+        radial-gradient(1200px 600px at 80% -10%, #1f2937 0%, transparent 60%),
+        radial-gradient(900px 500px at -10% 10%, #1e293b 0%, transparent 55%),
+        var(--bg);
+      line-height:1.6;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .container{ max-width:1080px; margin:0 auto; padding:0 20px; }
+
+    /* 헤더 */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 0;
+    }
+    .brand{ font-weight:800; letter-spacing:.2px; }
+    .nav-cta{
+      background:var(--brand); color:#0f172a; font-weight:800; padding:10px 16px; border-radius:999px;
+      transition:transform .15s ease, filter .15s ease;
+    }
+    .nav-cta:hover{ filter:brightness(.95); transform:translateY(-1px); }
+
+    /* 히어로 */
+    .hero{ padding:64px 0 32px; text-align:center; }
+    .hero h1{ font-size:clamp(28px,4.2vw,44px); line-height:1.2; margin:0 0 12px; }
+    .hero p{ color:var(--muted); margin:0 auto 20px; max-width:720px; }
+    .cta-primary{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      background:var(--brand); color:#0f172a; font-weight:900; padding:14px 22px; border-radius:14px; min-width:220px;
+      transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+      box-shadow:0 10px 30px rgba(34,197,94,.2);
+    }
+    .cta-primary:hover{ filter:brightness(.95); transform:translateY(-1px); box-shadow:0 14px 38px rgba(34,197,94,.28); }
+
+    /* 폼 카드 */
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0));
+      border:1px solid var(--border);
+      border-radius:16px; padding:22px;
+      backdrop-filter: blur(8px);
+      box-shadow:0 8px 24px rgba(0,0,0,.25);
+    }
+    .grid{ display:grid; gap:18px; grid-template-columns:1fr; }
+    @media(min-width:900px){ .grid{ grid-template-columns:1.1fr .9fr; } }
+
+    /* 폼 */
+    form{ display:grid; gap:12px; }
+    label{ font-size:14px; color:var(--muted); }
+    input, textarea, select, button{
+      font:inherit; color:inherit;
+    }
+    .field{
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .input{
+      background:#0b1220; border:1px solid var(--border);
+      padding:12px 12px; border-radius:12px; outline:none;
+      transition:border-color .15s ease, box-shadow .15s ease;
+    }
+    .input:focus{ border-color:#2dd4bf; box-shadow:0 0 0 4px rgba(45,212,191,.15); }
+    .help{ font-size:12px; color:var(--muted); }
+
+    .btn{
+      background:var(--brand); color:#0f172a; font-weight:900; padding:14px 18px; border-radius:12px; border:none; cursor:pointer;
+      transition:filter .15s ease, transform .15s ease;
+    }
+    .btn:hover{ filter:brightness(.95); transform:translateY(-1px); }
+    .btn[disabled]{ opacity:.6; cursor:not-allowed; transform:none; }
+
+    .note{ font-size:13px; color:var(--muted); }
+
+    /* 섹션 */
+    section{ padding:36px 0; }
+    .muted{ color:var(--muted); }
+
+    /* 푸터 */
+    footer{ padding:36px 0 60px; color:var(--muted); text-align:center; font-size:14px; }
+  </style>
+</head>
+<body>
+  <header class="container nav">
+    <div class="brand">리얼멘토</div>
+    <a class="nav-cta" href="#apply" aria-label="무료 멘토링 신청으로 이동">무료 멘토링받기</a>
+  </header>
+
+  <main>
+    <section class="container hero">
+      <h1>현직자 멘토와 연결되는 가장 쉬운 방법</h1>
+      <p>이름과 이메일만 남기면, 담당자가 빠르게 연락드립니다. 원하는 멘토가 있다면 선택해 주세요.</p>
+      <p><a class="cta-primary" href="#apply">무료 멘토링 신청</a></p>
+    </section>
+
+    <section id="apply" class="container">
+      <div class="grid">
+        <!-- 왼쪽: 소개 -->
+        <div class="card">
+          <h2 style="margin-top:0">무료 멘토링 신청</h2>
+          <p class="muted" style="margin-top:4px">연락처는 멘토링 안내 및 일정 조율에만 사용돼요.</p>
+
+          <!-- 신청 폼 -->
+          <form id="lead-form" novalidate>
+            <div class="field">
+              <label for="user_name">이름</label>
+              <input class="input" id="user_name" name="user_name" type="text" placeholder="홍길동" required />
+            </div>
+
+            <div class="field">
+              <label for="user_email">이메일</label>
+              <input class="input" id="user_email" name="user_email" type="email" inputmode="email" placeholder="you@example.com" required />
+              <div class="help">수신 가능한 주소인지 확인해 주세요.</div>
+            </div>
+
+            <div class="field">
+              <label for="mentor">원하는 멘토 (선택)</label>
+              <select class="input" id="mentor" name="mentor">
+                <option value="">아직 정하지 못했어요</option>
+                <option>브랜딩·카피 — 김민수</option>
+                <option>자영업 운영 — 이서연</option>
+                <option>콘텐츠·인플루언서 — 박지훈</option>
+              </select>
+              <div class="help">URL에 <code>?mentor=김민수</code> 처럼 달아도 자동 반영됩니다.</div>
+            </div>
+
+            <div class="field">
+              <label for="message">하고 싶은 말 (선택)</label>
+              <textarea class="input" id="message" name="message" rows="4" placeholder="필요한 멘토링 주제나 간단한 상황을 적어주세요."></textarea>
+            </div>
+
+            <!-- 허니팟(스팸봇 차단) -->
+            <input type="text" name="hp_company" autocomplete="off" tabindex="-1" style="display:none" />
+
+            <!-- 메타 정보(템플릿에서 확인용) -->
+            <input type="hidden" id="page_url"     name="page_url" />
+            <input type="hidden" id="user_agent"   name="user_agent" />
+            <input type="hidden" id="utm_source"   name="utm_source" />
+            <input type="hidden" id="utm_medium"   name="utm_medium" />
+            <input type="hidden" id="utm_campaign" name="utm_campaign" />
+            <input type="hidden" id="timestamp"    name="timestamp" />
+
+            <button id="submit-btn" class="btn" type="submit">무료 멘토링받기</button>
+            <p id="form-msg" class="note" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <!-- 오른쪽: 강조 카드 -->
+        <div class="card">
+          <h3 style="margin-top:0">왜 리얼멘토인가요?</h3>
+          <ul class="muted">
+            <li>현직자가 직접 도와주는 실전 조언</li>
+            <li>분야별 멘토 프로필 비교 후 선택</li>
+            <li>간단한 신청 → 빠른 연락</li>
+          </ul>
+          <hr style="border-color:var(--border); margin:18px 0;">
+          <h4>안내</h4>
+          <p class="muted">제출 즉시 접수 메일이 전송됩니다. 24시간 내 순차적으로 연락드려요.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    © <span id="year"></span> 리얼멘토 · 문의: contact@example.com
+  </footer>
+
+  <!-- EmailJS (Browser SDK v4) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // 0) 필수: Public Key로 초기화
+    emailjs.init({ publicKey: 'OR9njnFuo7S01qbIF' });
+
+    // 1) 상수 (당신이 제공한 값)
+    const SERVICE_ID  = 'service_wamwyvh';
+    const TEMPLATE_ID = 'template_0qpx8el';
+
+    // 2) UTM/멘토/메타 채우기
+    (function hydrateHiddenFields(){
+      const url = new URL(window.location.href);
+      const params = url.searchParams;
+
+      // 멘토 프리필 (URL ?mentor=이름)
+      const mentorParam = params.get('mentor');
+      if (mentorParam) document.getElementById('mentor').value = mentorParam;
+
+      // 메타 데이터
+      document.getElementById('page_url').value   = url.toString();
+      document.getElementById('user_agent').value = navigator.userAgent;
+      document.getElementById('timestamp').value  = new Date().toISOString();
+
+      // UTM
+      document.getElementById('utm_source').value   = params.get('utm_source')   || '';
+      document.getElementById('utm_medium').value   = params.get('utm_medium')   || '';
+      document.getElementById('utm_campaign').value = params.get('utm_campaign') || '';
+    })();
+
+    // 3) 폼 제출
+    const form = document.getElementById('lead-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formMsg = document.getElementById('form-msg');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      // 간단 검증
+      const name  = document.getElementById('user_name').value.trim();
+      const email = document.getElementById('user_email').value.trim();
+      if (!name || !email) {
+        formMsg.textContent = '이름과 이메일을 입력해 주세요.';
+        return;
+      }
+
+      // 허니팟(봇이 채우면 차단)
+      if (form.querySelector('[name="hp_company"]').value) {
+        formMsg.textContent = '전송이 차단되었습니다. (봇 의심)';
+        return;
+      }
+
+      // 버튼 상태
+      submitBtn.disabled = true;
+      submitBtn.textContent = '전송 중...';
+      formMsg.textContent = '';
+
+      // EmailJS 전송
+      emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form)
+        .then(() => {
+          form.reset();
+          formMsg.textContent = '신청이 접수되었습니다! 24시간 내로 연락드릴게요.';
+        })
+        .catch(err => {
+          console.error('EmailJS Error:', err);
+          const msg = err?.text || (err?.status ? `오류 코드 ${err.status}` : '알 수 없는 오류');
+          formMsg.textContent = '전송 실패: ' + msg;
+          alert('전송 실패: ' + msg);
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = '무료 멘토링받기';
+        });
+    });
+
+    // 4) 연도 자동
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
